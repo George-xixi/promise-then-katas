@@ -56,12 +56,6 @@ const dog = async() => {
     const NaughtyDog = sortedArray[index];
     console.log(NaughtyDog)
     return NaughtyDog;
-        // const findNaughtiest = dogs => {
-    //     return dog.naughty
-    // }
-
-    // const dogWeWant = dogsArray.filter(findNaughtiest);
-    // return dogWeWant
 };
 
 // 4 Create a function that uses the fetch function to make requests to the "jokes" URL and returns
@@ -74,7 +68,22 @@ const dog = async() => {
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
 //
 
-const joke = () => {};
+const joke = async() => {
+    const joke = fetch("jokes", "question");
+    const answer = fetch("jokes");
+    // console.log(joke);
+    // console.log(answer);
+    
+    const result =  await Promise.all([joke, answer]).then((response) => { return response });
+    console.log(result);
+    
+    const j = result[0];
+    const a = result[1];
+
+    return { question: j.joke,
+            answer: a.answer
+    };
+};
 
 module.exports = {
     food,
